@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Picker</title>
+	<style>
+		input[type=text] {
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-right: 10px;
+		}
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		li {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Movie Picker</h1>
+	<form>
+		<label for="movie">Enter a movie:</label>
+		<input type="text" id="movie" name="movie" placeholder="e.g. The Godfather">
+		<button type="button" onclick="addMovie()">Add</button>
+	</form>
+	<ul id="movieList"></ul>
+	<button type="button" onclick="pickRandomMovie()">Pick a random movie</button>
+
+	<script>
+		let movies = [];
+
+function addMovie() {
+  const movieInput = document.getElementById("movie");
+  const movie = movieInput.value;
+  if (movie !== "") {
+    movies.push(movie);
+    movieInput.value = "";
+    renderMovieList();
+  }
+}
+
+function renderMovieList() {
+  const movieList = document.getElementById("movieList");
+  movieList.innerHTML = "";
+  for (let i = 0; i < movies.length; i++) {
+    const movieItem = document.createElement("li");
+    movieItem.textContent = movies[i];
+    movieList.appendChild(movieItem);
+  }
+}
+
+function pickRandomMovie() {
+  const randomIndex = Math.floor(Math.random() * movies.length);
+  alert("Your random movie is: " + movies[randomIndex]);
+}
+
+	</script>
+</body>
+</html>
